@@ -1,7 +1,9 @@
+/* La grille de jeu, du puissance 4 */ 
 #game table {
     border: 3px blue outset;
     background-color: blue;
 }
+/* les dimension des case */
 #game td {
     width: 2cm;
     height: 2cm;
@@ -9,12 +11,57 @@
     padding: 0px;
     border: 2px blue inset;
     border-radius: 2cm;
-    background-color: white;
+    background-color: lightblue;
     cursor: pointer;
 }
+/* le jeton du joueur 1 */
 #game td.player1 {
     background-color: red;
 }
+/* le jeton du joueur 2 */
 #game td.player2 {
     background-color: yellow;
+}
+/* Centrer le texte et mettre un fond */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: lightblue;
+    text-align: center;
+}
+
+/* Centrer le body */
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Centrer et styliser l'image */
+img {
+    margin-top: 20px;
+    max-width: 300px;
+    height: auto;
+    border-radius: 10px;
+}
+
+/* Style du bouton "Play" */
+.play-button {
+    display: inline-block;
+    background-color: #c00; /* rouge */
+    color: white;
+    padding: 12px 24px;
+    border-radius: 12px;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 18px;
+    margin-top: 20px;
+    transition: background-color 0.2s, transform 0.1s;
+}
+
+.play-button:hover {
+    background-color: #900;
+    transform: scale(1.05);
 }
