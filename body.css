@@ -60,7 +60,7 @@ img {
     margin-top: 20px;
     transition: background-color 0.2s, transform 0.1s;
 }
-
+/* Style du bouton lorsqu'on appuie */
 .play-button:hover {
     background-color: #900;
     transform: scale(1.05);
