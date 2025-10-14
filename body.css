@@ -50,7 +50,7 @@ img {
 /* Style du bouton "Play" */
 .play-button {
     display: inline-block;
-    background-color: #c00; /* rouge */
+    background-color: #c00; 
     color: white;
     padding: 12px 24px;
     border-radius: 12px;
