@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{{.Title}}</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+  <meta name="theme-color" content="#0e0e10" />
+</head>
+<body class="landing">
+  <header class="site-header">
+    <h1 class="logo" aria-label="MAPAMOBI">MAPAMOBI<span class="sparkle">★</span></h1>
+    <button id="themeToggle" class="btn ghost" aria-label="Basculer le thème">🌓</button>
+  </header>
+
+  <main class="hero">
+    <h2 class="title">Le jeu de l’année</h2>
+    <p class="subtitle">Puissance 4</p>
+    <a class="btn primary big" href="/power">▶️ Jouer maintenant</a>
+    <p class="hint">Plus : il existe une <strong>quête cachée</strong>… 👀</p>
+  </main>
+
+  <footer class="site-footer">
+    <p>{{.Body}}</p>
+  </footer>
+
+  <script>
+    // simple theme toggle persistant
+    const key = 'mapamobi-theme';
+    const stored = localStorage.getItem(key);
+    if (stored) document.documentElement.dataset.theme = stored;
+    document.getElementById('themeToggle').onclick = () => {
+      const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = t;
+      localStorage.setItem(key, t);
+    };
+  </script>
+</body>
+</html>

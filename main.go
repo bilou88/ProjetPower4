@@ -4,38 +4,43 @@ import (
 	"html/template"
 	"log"
 	"net/http"
+	"path/filepath"
 )
 
-// Charger le template
-var tmpl = template.Must(template.ParseFiles("index.html"))
-var tmplPower = template.Must(template.ParseFiles("power.html"))
+var (
+	tmplIndex = template.Must(template.ParseFiles(filepath.Join("templates", "index.html")))
+	tmplPower = template.Must(template.ParseFiles(filepath.Join("templates", "power.html")))
+)
 
-func handler(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{
-		"Title": "Mon premier serveur Go",
+func handlerIndex(w http.ResponseWriter, r *http.Request) {
+	data := map[string]any{
+		"Title": "MAPAMOBI — Accueil",
 		"Body":  "Ceci est une page HTML générée avec Go.",
 	}
-	err := tmpl.Execute(w, data)
-	if err != nil {
+	if err := tmplIndex.Execute(w, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
+
 func handlerPower(w http.ResponseWriter, r *http.Request) {
-	data := map[string]string{
-		"Title": "Power 4",
+	data := map[string]any{
+		"Title": "Power 4 — MAPAMOBI",
 		"Body":  "Bienvenue sur MAPAMOBI !",
 	}
-	err := tmplPower.Execute(w, data)
-	if err != nil {
+	if err := tmplPower.Execute(w, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 	}
 }
 
 func main() {
-	http.Handle("/image/", http.StripPrefix("/image/", http.FileServer(http.Dir("image"))))
-	http.Handle("/body.css", http.FileServer(http.Dir(".")))
-	http.HandleFunc("/", handler)
-	http.HandleFunc("/power.html", handlerPower)
+	// /static/ -> ./static
+	fs := http.FileServer(http.Dir("static"))
+	http.Handle("/static/", http.StripPrefix("/static/", fs))
+
+	// routes
+	http.HandleFunc("/", handlerIndex)
+	http.HandleFunc("/power", handlerPower)
+
 	log.Println("Serveur démarré sur http://localhost:8080")
 	log.Fatal(http.ListenAndServe(":8080", nil))
 }

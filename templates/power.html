@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width" />
+  <title>{{.Title}}</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/styles.css" />
+  <meta name="theme-color" content="#0e0e10" />
+</head>
+<body>
+  <header class="site-header">
+    <a href="/" class="logo small">MAPAMOBI</a>
+    <div class="actions">
+      <button id="themeToggle" class="btn ghost" aria-label="Basculer le thème">🌓</button>
+      <button id="resetBtn" class="btn">↺ Réinitialiser</button>
+    </div>
+  </header>
+
+  <main class="game-wrap">
+    <section class="hud">
+      <div class="score">
+        <span class="badge j1">J1</span> <span id="scoreP1">0</span>
+        <span class="sep">•</span>
+        <span class="badge j2">J2</span> <span id="scoreP2">0</span>
+      </div>
+      <div id="turn" class="turn">Au tour de <strong>J1</strong> 🔴</div>
+      <div id="secretBadge" class="secret-badge" hidden>🌈 Rainbow Mode débloqué !</div>
+    </section>
+
+    <section class="board" id="board" aria-label="Grille Puissance 4" role="grid"></section>
+
+    <section class="controls">
+      <button id="newGameBtn" class="btn primary">Nouvelle manche</button>
+      <button id="helpBtn" class="btn ghost">❓ Règles</button>
+    </section>
+  </main>
+
+  <!-- Modale d’aide -->
+  <dialog id="helpModal" class="modal">
+    <h3>Règles rapides</h3>
+    <p>Alignez 4 jetons horizontalement, verticalement ou en diagonale. Cliquez en haut d’une colonne pour lâcher un jeton.</p>
+    <button class="btn" id="closeHelp">OK</button>
+  </dialog>
+
+  <script src="/static/game.js"></script>
+  <script>
+    // thème persistant
+    const key = 'mapamobi-theme';
+    const stored = localStorage.getItem(key);
+    if (stored) document.documentElement.dataset.theme = stored;
+    document.getElementById('themeToggle').onclick = () => {
+      const t = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+      document.documentElement.dataset.theme = t;
+      localStorage.setItem(key, t);
+    };
+  </script>
+</body>
+</html>
