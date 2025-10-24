@@ -1,4 +1,3 @@
-/* MAPAMOBI — Effet de neige ❄️ */
 (() => {
   const canvas = document.getElementById('snow-canvas');
   const ctx = canvas.getContext('2d');
@@ -9,7 +8,6 @@
   function resize() {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
-    // Réinitialiser la densité de la neige
     snowflakes = Array.from({ length: Math.floor(width / 6) }, () => newFlake());
   }
 
@@ -17,10 +15,10 @@
     return {
       x: Math.random() * width,
       y: Math.random() * height,
-      r: Math.random() * 3 + 1, // rayon
-      d: Math.random() * 0.5 + 0.5, // densité (vitesse verticale)
-      drift: Math.random() * 1 - 0.5, // déplacement horizontal léger
-      alpha: Math.random() * 0.5 + 0.3 // opacité
+      r: Math.random() * 3 + 1,
+      d: Math.random() * 0.5 + 0.5,
+      drift: Math.random() * 1 - 0.5,
+      alpha: Math.random() * 0.5 + 0.3
     };
   }
 
@@ -38,7 +36,6 @@
     ctx.fill();
     ctx.globalAlpha = 1;
 
-    // mise à jour des positions
     for (const flake of snowflakes) {
       flake.y += flake.d;
       flake.x += flake.drift * 0.5;

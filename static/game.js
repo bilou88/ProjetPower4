@@ -1,4 +1,3 @@
-/* MAPAMOBI — Puissance 4 animé */
 (() => {
   const COLS = 7, ROWS = 6;
   const boardEl = document.getElementById('board');
@@ -12,15 +11,13 @@
   const helpModal = document.getElementById('helpModal');
   const closeHelp = document.getElementById('closeHelp');
 
-  // état
   let board = createBoard();
-  let current = 1; // 1 ou 2
+  let current = 1;
   let lock = false;
   let score = JSON.parse(localStorage.getItem('mapamobi-score')||'{"p1":0,"p2":0}');
   scoreP1El.textContent = score.p1;
   scoreP2El.textContent = score.p2;
 
-  // “quête cachée” — taper MAPAMOBI
   const secretWord = 'MAPAMOBI';
   let buffer = '';
   const rainbowKey = 'mapamobi-rainbow';
@@ -28,7 +25,6 @@
     enableRainbow();
   }
 
-  // build UI
   renderEmptyBoard();
 
   function createBoard(){
@@ -40,7 +36,7 @@
     boardEl.style.setProperty('--cols', COLS);
     boardEl.style.setProperty('--rows', ROWS);
 
-    for (let r=ROWS-1; r>=0; r--) {         // on crée les cellules du haut vers le bas visuellement
+    for (let r=ROWS-1; r>=0; r--) {
       for (let c=0; c<COLS; c++) {
         const cell = document.createElement('div');
         cell.className = 'cell';
@@ -58,18 +54,15 @@
   function handleColumnClick(col){
     if (lock) return;
     const row = nextEmptyRow(col);
-    if (row === -1) return; // colonne pleine
+    if (row === -1) return;
 
     lock = true;
     const idx = domIndex(row, col);
     const cell = boardEl.children[idx];
-
-    // créer le jeton animé
     const token = document.createElement('div');
     token.className = `token ${current===1?'p1':'p2'} drop`;
     cell.appendChild(token);
 
-    // après l’anim, fixer l’état
     token.addEventListener('animationend', () => {
       board[row][col] = current;
 
@@ -105,7 +98,6 @@
   }
 
   function domIndex(row,col){
-    // l’UI est inversée en rows (on a créé du haut visuel vers le bas)
     const visualRow = (ROWS-1) - row;
     return visualRow*COLS + col;
   }
@@ -126,7 +118,6 @@
       const a = countDir(r,c,dr,dc,p);
       const b = countDir(r,c,-dr,-dc,p);
       if (1+a+b >= 4){
-        // reconstruire les 4 positions gagnantes
         const line = [[r,c]];
         for(let i=1;i<=a;i++) line.push([r+i*dr,c+i*dc]);
         for(let i=1;i<=b;i++) line.unshift([r-i*dr,c-i*dc]);
@@ -154,7 +145,6 @@
     board = createBoard();
     current = 1;
     lock = false;
-    // wipe UI tokens and highlights
     Array.from(boardEl.children).forEach(cell => {
       cell.classList.remove('win');
       const t = cell.querySelector('.token');
@@ -189,8 +179,6 @@
   }
 
   function maybePulseColumn(col){
-    // optionnel : on pourrait prévisualiser où ça tombe
-    // (léger feedback haptique sur mobile)
     vibrate(4);
   }
 
@@ -198,7 +186,6 @@
     if (navigator.vibrate) try{ navigator.vibrate(ms); }catch(e){}
   }
 
-  // Boutons
   resetBtn?.addEventListener('click', ()=>{
     score = {p1:0,p2:0};
     scoreP1El.textContent = '0';
@@ -212,7 +199,6 @@
   helpBtn?.addEventListener('click', ()=> helpModal.showModal());
   closeHelp?.addEventListener('click', ()=> helpModal.close());
 
-  // ======= Quête cachée : taper "MAPAMOBI" =======
   window.addEventListener('keydown', (e)=>{
     if (e.key.length === 1) {
       buffer += e.key.toUpperCase();

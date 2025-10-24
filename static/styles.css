@@ -6,8 +6,8 @@
   --primary: #6ee7ff;
   --accent: #ff7ad9;
   --win: #7dff9e;
-  --p1: #ff425a;  /* rouge */
-  --p2: #ffd33d;  /* jaune */
+  --p1: #ff425a;
+  --p2: #ffd33d;
   --cell: #0e2a4a;
   --ring: #1a4d87;
   --shadow: 0 10px 30px rgba(0,0,0,.35);
@@ -42,7 +42,6 @@ body {
     linear-gradient(160deg, var(--bg), #0e0e10 60%);
 }
 
-/* ---------------- HEADER ---------------- */
 .site-header {
   display: flex;
   align-items: center;
@@ -56,15 +55,14 @@ body {
   background: linear-gradient(to bottom, rgba(0,0,0,.35), transparent);
 }
 
-/* --- LOGO MAPAMOBI --- */
 .logo {
   font-weight: 700;
   letter-spacing: .04em;
   font-size: 28px;
-  color: white; /* ✅ couleur blanche */
+  color: white;
   text-decoration: none;
   text-shadow: 0 0 6px rgba(255,255,255,0.7),
-               0 0 12px rgba(255,255,255,0.4); /* effet néon doux */
+               0 0 12px rgba(255,255,255,0.4);
   transition: text-shadow 0.3s ease;
 }
 .logo:hover {
@@ -81,7 +79,6 @@ body {
   50% { opacity: .2; transform: scale(.9); }
 }
 
-/* ---------------- LANDING PAGE ---------------- */
 .landing .hero {
   min-height: calc(100vh - 80px);
   display: flex;
@@ -100,7 +97,6 @@ body {
 .subtitle { color: var(--muted); margin: 0 0 12px; }
 .hint { color: var(--muted); }
 
-/* ---------------- BUTTONS ---------------- */
 .btn {
   background: var(--bg-soft);
   color: var(--text);
@@ -129,7 +125,6 @@ body {
   border: 1px solid rgba(255,255,255,.2);
 }
 
-/* ---------------- GAME WRAPPER ---------------- */
 .game-wrap {
   max-width: 980px;
   margin: 24px auto;
@@ -161,12 +156,10 @@ body {
 .turn { color: var(--muted); }
 .sep { opacity: .4; margin: 0 8px; }
 
-/* ---------------- BOARD ---------------- */
 .board {
   --cols: 7;
   --rows: 6;
   display: grid;
-  /* ✅ cases beaucoup plus grandes */
   grid-template-columns: repeat(var(--cols), minmax(80px, 1fr));
   gap: 14px;
   padding: 20px;
@@ -176,9 +169,9 @@ body {
   box-shadow: 0 20px 50px rgba(0,0,0,0.5);
   position: relative;
   overflow: hidden;
-  max-width: 1280px; /* ✅ plateau géant */
+  max-width: 1280px;
   margin: 30px auto;
-  transform: scale(1); /* possibilité d’ajuster facilement */
+  transform: scale(1);
   transition: transform 0.3s ease;
 }
 .board.rainbow { animation: rainbow 6s linear infinite; }
@@ -187,7 +180,6 @@ body {
   100% { filter: hue-rotate(360deg); }
 }
 
-/* ---------------- CELL ---------------- */
 .cell {
   aspect-ratio: 1/1;
   border-radius: 50%;
@@ -207,7 +199,6 @@ body {
   filter: drop-shadow(0 2px 4px rgba(0,0,0,.5));
 }
 
-/* ---------------- TOKEN (JETON) ---------------- */
 .token {
   width: 100%;
   height: 100%;
@@ -225,7 +216,6 @@ body {
   background: radial-gradient(circle at 35% 30%, #fff1a3 0, var(--p2) 60%, #b39300 100%);
 }
 
-/* Animation de chute */
 @keyframes drop {
   0% { transform: translateY(-900%); }
   90% { transform: translateY(4%); }
@@ -235,14 +225,12 @@ body {
   animation: drop .42s cubic-bezier(.2,.9,.2,1.05) both;
 }
 
-/* ---------------- WIN HIGHLIGHT ---------------- */
 .win {
   outline: 4px solid var(--win);
   box-shadow: 0 0 0 6px rgba(125,255,158,.18),
               0 0 24px rgba(125,255,158,.35);
 }
 
-/* ---------------- CONFETTI ---------------- */
 .confetti {
   position: absolute;
   width: 8px;
@@ -256,7 +244,6 @@ body {
   100% { transform: translateY(120vh) rotate(720deg); opacity: 0; }
 }
 
-/* ---------------- MODAL ---------------- */
 .modal {
   border: none;
   border-radius: 14px;
@@ -269,7 +256,6 @@ body {
   background: rgba(0,0,0,.55);
 }
 
-/* ---------------- SECRET BADGE ---------------- */
 .secret-badge {
   padding: 6px 10px;
   border-radius: 999px;
@@ -279,12 +265,10 @@ body {
   box-shadow: var(--shadow);
 }
 
-/* ---------------- RESPONSIVE ---------------- */
 @media (max-width:680px) {
   .board { gap: 8px; }
 }
 
-/* ---------------- NEIGE ---------------- */
 #snow-canvas {
   position: fixed;
   top: 0;
