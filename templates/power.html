@@ -5,18 +5,15 @@
   <meta name="viewport" content="width=device-width" />
   <title>{{.Title}}</title>
 
-  <!-- Police et style -->
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 
-  <!-- Ton CSS -->
   <link rel="stylesheet" href="/static/styles.css" />
 
   <meta name="theme-color" content="#0e0e10" />
 </head>
 <body>
 
-  <!-- En-tête -->
   <header class="site-header">
     <a href="/" class="logo small">MAPAMOBI<span class="sparkle">★</span></a>
     <div class="actions">
@@ -25,7 +22,6 @@
     </div>
   </header>
 
-  <!-- Contenu principal -->
   <main class="game-wrap">
     <section class="hud">
       <div class="score">
@@ -37,7 +33,6 @@
       <div id="secretBadge" class="secret-badge" hidden>🌈 MAPAMOBI Mode débloqué !</div>
     </section>
 
-    <!-- Plateau du jeu -->
     <section class="board" id="board" aria-label="Grille Puissance 4" role="grid"></section>
 
     <section class="controls">
@@ -46,22 +41,18 @@
     </section>
   </main>
 
-  <!-- Modale d’aide -->
   <dialog id="helpModal" class="modal">
     <h3>Règles rapides</h3>
     <p>Alignez 4 jetons horizontalement, verticalement ou en diagonale. Cliquez en haut d’une colonne pour lâcher un jeton.</p>
     <button class="btn" id="closeHelp">OK</button>
   </dialog>
 
-  <!-- Canvas de neige -->
   <canvas id="snow-canvas"></canvas>
 
-  <!-- Scripts -->
   <script src="/static/game.js"></script>
   <script src="/static/snow.js"></script>
 
   <script>
-    // Gestion du thème clair/sombre
     const key = 'mapamobi-theme';
     const stored = localStorage.getItem(key);
     if (stored) document.documentElement.dataset.theme = stored;

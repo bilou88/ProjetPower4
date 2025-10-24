@@ -33,11 +33,9 @@ func handlerPower(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	// /static/ -> ./static
 	fs := http.FileServer(http.Dir("static"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 
-	// routes
 	http.HandleFunc("/", handlerIndex)
 	http.HandleFunc("/power", handlerPower)
 
