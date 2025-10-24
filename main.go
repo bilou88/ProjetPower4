@@ -15,7 +15,7 @@ var (
 func handlerIndex(w http.ResponseWriter, r *http.Request) {
 	data := map[string]any{
 		"Title": "MAPAMOBI — Accueil",
-		"Body":  "Ceci est une page HTML générée avec Go.",
+		"Body":  "Bonne chance et amusez-vous bien !",
 	}
 	if err := tmplIndex.Execute(w, data); err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
